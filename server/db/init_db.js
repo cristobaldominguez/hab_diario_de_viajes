@@ -20,16 +20,16 @@ const init = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS users(
         id INT UNSIGNED AUTO_INCREMENT,
-      
+
         username VARCHAR(30) UNIQUE NOT NULL,
         email VARCHAR(75) UNIQUE NOT NULL,
         password VARCHAR(125) NOT NULL,
         avatar VARCHAR(100),
         role ENUM('admin', 'normal') DEFAULT 'normal',
         registrationCode VARCHAR(100),
-        recoverPassCode VARCHAR(100),
+        recoveryPassCode VARCHAR(100),
         active BOOLEAN DEFAULT false,
-      
+
         createdAt DATETIME DEFAULT NOW(),
         modifiedAt DATETIME,
       
@@ -43,15 +43,15 @@ const init = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS entries(
         id INT UNSIGNED AUTO_INCREMENT,
-      
+
         title VARCHAR(100) NOT NULL,
         place VARCHAR(100) NOT NULL,
         description TEXT NOT NULL,
         userId INT UNSIGNED NOT NULL,
-      
+
         createdAt DATETIME DEFAULT NOW(),
         modifiedAt DATETIME,
-      
+
         PRIMARY KEY (id),
         FOREIGN KEY (userId) REFERENCES users(id)
       )
@@ -63,12 +63,12 @@ const init = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS photos(
         id INT UNSIGNED AUTO_INCREMENT,
-      
+
         name VARCHAR(100) NOT NULL,
         entryId INT UNSIGNED NOT NULL,
-      
+
         createdAt DATETIME DEFAULT NOW(),
-      
+
         PRIMARY KEY (id),
         FOREIGN KEY (entryId) REFERENCES entries(id)
       )
