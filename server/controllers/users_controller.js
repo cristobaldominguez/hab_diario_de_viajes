@@ -172,7 +172,7 @@ async function editUserAvatar (req, res, next) {
 
     // Si el usuario tiene un avatar previo lo eliminamos.
     if (user.avatar) {
-      await deletePhoto(user.avatar)
+      await deletePhoto({ name: user.avatar })
     }
 
     // Guardamos el avatar en una carpeta del servidor y obtenemos el nombre con el que lo hemos

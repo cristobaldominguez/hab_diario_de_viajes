@@ -12,6 +12,7 @@ import error404 from './middlewares/error_404.js'
 
 // Routes
 import userRoutes from './routes/users_routes.js'
+import entriesRoutes from './routes/entries_routes.js'
 
 // Helpers
 import serverListenerCallback from './helpers/server_listener_callback.js'
@@ -28,6 +29,7 @@ app.use('/avatars', express.static(UPLOADS_DIR))
 
 // Routes
 app.use('/users', userRoutes)
+app.use('/entries', entriesRoutes)
 
 // Error Handling
 app.use(error404)

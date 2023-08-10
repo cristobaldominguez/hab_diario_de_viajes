@@ -46,10 +46,10 @@ async function savePhoto ({ img, width }) {
   }
 }
 
-async function deletePhoto (imgName) {
+async function deletePhoto ({ name }) {
   try {
     // Ruta absoluta al archivo que queremos elimiar.
-    const imgPath = path.resolve(root, UPLOADS_DIR, imgName)
+    const imgPath = path.resolve(root, UPLOADS_DIR, name)
 
     try {
       await fs.access(imgPath)
